@@ -1,7 +1,9 @@
-n = 3
-mean_val = sum([int(input()) for _ in range(n)]) / n
-print(mean_val)
-if mean_val >= 60.0:
-    print("Congratulations, you are accepted!")
-else:
-    print("We regret to inform you that we will not be able to offer you admission.")
+n = int(input())
+m = int(input())
+
+applicants = [input().split() for _ in range(n)]
+sorted_apps = sorted(applicants, reverse=True, key=lambda x: x[2])
+
+print("Successful applicants:")
+for i in range(m):
+    print(f"{sorted_apps[i][0]} {sorted_apps[i][1]}")
