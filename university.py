@@ -7,15 +7,15 @@ fname = "applicants.txt"
 
 
 class Student:
-    def __init__(self, name, last, phy, chem, math, cs, first, second, third):
+    def __init__(self, name, last, phy, chem, math, cs, sp, first, second, third):
         self.name = name
         self.last = last
         self.options = {"first": first, "second": second, "third": third}
-        self.scores = {"Physics": (float(phy) + float(math))/2,
-                       "Chemistry": float(chem),
-                       "Mathematics": float(math),
-                       "Engineering": (float(cs) + float(math))/2,
-                       "Biotech": (float(chem) + float(phy))/2}
+        self.scores = {"Physics": max((float(phy) + float(math))/2, float(sp)),
+                       "Chemistry": max(float(chem), float(sp)),
+                       "Mathematics": max(float(math), float(sp)),
+                       "Engineering": max((float(cs) + float(math))/2, float(sp)),
+                       "Biotech": max((float(chem) + float(phy))/2, float(sp))}
         self.full_name = f"{self.name} {self.last}"
 
 
