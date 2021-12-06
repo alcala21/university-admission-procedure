@@ -11,8 +11,11 @@ class Student:
         self.name = name
         self.last = last
         self.options = {"first": first, "second": second, "third": third}
-        self.scores = {"Physics": float(phy), "Chemistry": float(chem),
-                       "Mathematics": float(math), "Engineering": float(cs), "Biotech": float(chem)}
+        self.scores = {"Physics": (float(phy) + float(math))/2,
+                       "Chemistry": float(chem),
+                       "Mathematics": float(math),
+                       "Engineering": (float(cs) + float(math))/2,
+                       "Biotech": (float(chem) + float(phy))/2}
         self.full_name = f"{self.name} {self.last}"
 
 
@@ -54,8 +57,7 @@ for option in ['first', 'second', 'third']:
                       for dep in department_names], [])
 
 for dep in department_names:
-    print(departments[dep].name)
-    for applicant in departments[dep].accepted:
-        print(f"{applicant.full_name} {applicant.scores[dep]}")
-    print()
+    with open(f"{dep.lower()}.txt", "w") as f:
+        for applicant in departments[dep].accepted:
+            f.write(f"{applicant.full_name} {applicant.scores[dep]}\n")
 
